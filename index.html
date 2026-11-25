@@ -1,0 +1,1803 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频平台_高清视频在线看_国产特色内容在线观看</title>
+<meta name="description" content="官方视频平台，提供高清原创视频内容在线观看，涵盖国产特色视频、纪录片、访谈与创作者社区，提供正版高清在线观看与内容生态。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231b3a2e'/%3E%3Cpath d='M26 20 L46 32 L26 44 Z' fill='%23c8f169'/%3E%3C/svg%3E">
+<style>
+:root{
+  --vi-green:#1b3a2e;
+  --vi-green-deep:#122a20;
+  --vi-lime:#c8f169;
+  --vi-earth:#6b7f5e;
+  --vi-cream:#f5f3ec;
+  --vi-sand:#e4e0d2;
+  --vi-text:#20302a;
+  --vi-muted:#5d6b63;
+  --vi-line:#d8d3c4;
+  --vi-white:#ffffff;
+  --vi-shadow:0 2px 10px rgba(27,58,46,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,sans-serif;
+  background:var(--vi-cream);
+  color:var(--vi-text);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.vi-wrap{width:min(1180px,92vw);margin:0 auto}
+
+/* 公告条 + 页头 吸顶 */
+.vi-topbar{
+  background:var(--vi-green-deep);
+  color:#dce8d8;
+  font-size:13.5px;
+  letter-spacing:.2px;
+}
+.vi-topbar .vi-wrap{
+  display:flex;align-items:center;gap:14px;
+  min-height:40px;padding:6px 0;
+}
+.vi-topbar-tag{
+  flex:none;background:var(--vi-lime);color:var(--vi-green-deep);
+  font-weight:700;font-size:12px;padding:2px 9px;border-radius:3px;
+}
+.vi-topbar-text{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vi-topbar-text b{color:var(--vi-lime);font-weight:600}
+.vi-topbar-link{flex:none;color:var(--vi-lime);border-bottom:1px solid rgba(200,241,105,.5);padding-bottom:1px}
+
+.vi-header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(245,243,236,.96);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--vi-line);
+}
+.vi-header .vi-wrap{
+  display:flex;align-items:center;gap:22px;
+  min-height:64px;
+}
+.vi-brand{display:flex;align-items:center;gap:10px;flex:none}
+.vi-brand-mark{
+  width:38px;height:38px;border-radius:9px;flex:none;
+  background:var(--vi-green);
+  display:flex;align-items:center;justify-content:center;
+}
+.vi-brand-mark svg{width:20px;height:20px}
+.vi-brand-name{font-weight:800;font-size:18px;letter-spacing:.5px;color:var(--vi-green)}
+.vi-brand-sub{font-size:11px;color:var(--vi-muted);letter-spacing:1.5px;line-height:1.1}
+.vi-nav{display:flex;gap:4px;flex:1;min-width:0;flex-wrap:wrap}
+.vi-nav a{
+  font-size:14.5px;padding:6px 11px;border-radius:6px;color:#33453b;
+  transition:.18s;
+}
+.vi-nav a:hover,.vi-nav a.is-active{background:var(--vi-green);color:var(--vi-lime)}
+.vi-head-tools{display:flex;align-items:center;gap:10px;flex:none}
+.vi-search{
+  display:flex;align-items:center;gap:6px;
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:22px;
+  padding:5px 6px 5px 14px;transition:.2s;
+}
+.vi-search:focus-within{border-color:var(--vi-green);box-shadow:0 0 0 3px rgba(27,58,46,.08)}
+.vi-search input{
+  border:none;outline:none;background:transparent;font-size:13.5px;width:150px;color:var(--vi-text);
+}
+.vi-search button{
+  background:var(--vi-green);color:var(--vi-lime);font-size:13px;
+  padding:5px 13px;border-radius:16px;font-weight:600;transition:.18s;
+}
+.vi-search button:hover{background:var(--vi-green-deep)}
+.vi-menu-btn{
+  display:none;width:40px;height:40px;border:1px solid var(--vi-line);border-radius:8px;
+  align-items:center;justify-content:center;background:var(--vi-white);
+}
+.vi-menu-btn span{display:block;width:18px;height:2px;background:var(--vi-green);position:relative}
+.vi-menu-btn span::before,.vi-menu-btn span::after{
+  content:"";position:absolute;left:0;width:18px;height:2px;background:var(--vi-green);transition:.2s;
+}
+.vi-menu-btn span::before{top:-6px}
+.vi-menu-btn span::after{top:6px}
+.vi-search-feedback{
+  position:absolute;right:0;top:calc(100% + 8px);
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:10px;
+  box-shadow:0 10px 30px rgba(27,58,46,.14);
+  padding:10px 14px;font-size:13px;color:var(--vi-muted);min-width:240px;
+  display:none;z-index:70;
+}
+.vi-search-feedback.is-on{display:block}
+.vi-head-tools{position:relative}
+
+/* 首屏 左文右侧大图+数据条 */
+.vi-hero{padding:52px 0 20px;position:relative;overflow:hidden}
+.vi-hero-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:46px;align-items:center;
+}
+.vi-hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:2px;color:var(--vi-earth);
+  border:1px solid var(--vi-line);border-radius:20px;padding:4px 13px;margin-bottom:18px;
+  background:var(--vi-white);font-weight:600;
+}
+.vi-hero-eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--vi-green);display:block}
+.vi-hero h1{
+  font-size:clamp(30px,4.4vw,52px);
+  line-height:1.22;letter-spacing:.5px;font-weight:900;color:var(--vi-green-deep);
+  margin-bottom:18px;
+}
+.vi-hero h1 em{font-style:normal;color:var(--vi-earth);position:relative}
+.vi-hero h1 em::after{
+  content:"";position:absolute;left:0;right:0;bottom:2px;height:9px;
+  background:var(--vi-lime);opacity:.55;z-index:-1;border-radius:2px;
+}
+.vi-hero-lead{
+  font-size:15.5px;color:#3d5147;max-width:540px;margin-bottom:20px;
+}
+.vi-hero-desc{
+  font-size:14.5px;color:var(--vi-muted);background:var(--vi-white);
+  border-left:3px solid var(--vi-green);border-radius:0 10px 10px 0;
+  padding:14px 18px;margin-bottom:24px;box-shadow:var(--vi-shadow);
+}
+.vi-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.vi-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;border-radius:26px;font-size:14.5px;font-weight:600;
+  transition:.2s;border:1px solid transparent;
+}
+.vi-btn-primary{background:var(--vi-green);color:var(--vi-lime)}
+.vi-btn-primary:hover{background:var(--vi-green-deep);transform:translateY(-2px)}
+.vi-btn-ghost{background:var(--vi-white);border-color:var(--vi-line);color:var(--vi-green)}
+.vi-btn-ghost:hover{border-color:var(--vi-green);transform:translateY(-2px)}
+.vi-hero-visual{position:relative}
+.vi-hero-frame{
+  border-radius:18px;overflow:hidden;position:relative;
+  box-shadow:0 18px 44px rgba(18,42,32,.18);
+  aspect-ratio:16/11;background:var(--vi-green);
+}
+.vi-hero-frame img{width:100%;height:100%;object-fit:cover}
+.vi-hero-badge{
+  position:absolute;left:16px;top:16px;z-index:2;
+  background:rgba(18,42,32,.82);color:var(--vi-lime);
+  font-size:12px;font-weight:600;padding:5px 12px;border-radius:14px;
+  display:flex;align-items:center;gap:6px;backdrop-filter:blur(4px);
+}
+.vi-hero-badge i{width:6px;height:6px;background:#f26d5b;border-radius:50%;display:block;animation:vi-pulse 1.6s infinite}
+@keyframes vi-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.vi-hero-play{
+  position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;
+  background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(18,42,32,.3);transition:.2s;
+}
+.vi-hero-play:hover{transform:scale(1.08);background:var(--vi-lime)}
+.vi-hero-play svg{width:24px;height:24px;margin-left:4px}
+.vi-hero-stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  background:var(--vi-line);border-radius:14px;overflow:hidden;margin-top:20px;
+  border:1px solid var(--vi-line);
+}
+.vi-hero-stat{background:var(--vi-white);padding:16px 12px;text-align:center}
+.vi-hero-stat b{display:block;font-size:clamp(20px,2.4vw,27px);font-weight:900;color:var(--vi-green);line-height:1.2}
+.vi-hero-stat span{font-size:12px;color:var(--vi-muted);letter-spacing:.5px}
+
+/* 通用 section */
+.vi-section{padding:58px 0}
+.vi-section-alt{background:var(--vi-white);border-top:1px solid var(--vi-line);border-bottom:1px solid var(--vi-line)}
+.vi-sec-head{margin-bottom:30px;max-width:760px}
+.vi-sec-kicker{
+  font-size:12px;letter-spacing:2.5px;color:var(--vi-earth);font-weight:700;
+  display:flex;align-items:center;gap:10px;margin-bottom:10px;
+}
+.vi-sec-kicker::before{content:"";width:26px;height:2px;background:var(--vi-green);display:block}
+.vi-sec-head h2{
+  font-size:clamp(23px,2.9vw,33px);font-weight:900;color:var(--vi-green-deep);
+  line-height:1.3;letter-spacing:.3px;
+}
+.vi-sec-head p{margin-top:10px;color:var(--vi-muted);font-size:14.5px}
+.vi-sec-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;max-width:none}
+.vi-sec-head-row .vi-sec-head{margin-bottom:0}
+.vi-sec-link{font-size:13.5px;font-weight:600;color:var(--vi-green);border-bottom:1px solid var(--vi-line);padding-bottom:2px;white-space:nowrap}
+.vi-sec-link:hover{border-color:var(--vi-green)}
+
+/* 焦点内容  一幅重点大图与文字列表 */
+.vi-focus-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:26px;margin-top:26px}
+.vi-focus-main{
+  background:var(--vi-white);border-radius:16px;overflow:hidden;
+  border:1px solid var(--vi-line);box-shadow:var(--vi-shadow);
+  display:flex;flex-direction:column;transition:.22s;
+}
+.vi-focus-main:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(18,42,32,.13)}
+.vi-focus-cover{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--vi-green-deep)}
+.vi-focus-cover img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.vi-focus-main:hover .vi-focus-cover img{transform:scale(1.04)}
+.vi-focus-body{padding:20px 22px 22px}
+.vi-focus-body h3{font-size:20px;font-weight:800;line-height:1.4;color:var(--vi-green-deep);margin-bottom:8px}
+.vi-focus-body p{font-size:14px;color:var(--vi-muted);margin-bottom:14px}
+.vi-tagrow{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.vi-tag{
+  font-size:11.5px;padding:3px 10px;border-radius:12px;background:rgba(27,58,46,.07);
+  color:var(--vi-green);font-weight:600;
+}
+.vi-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--vi-muted)}
+.vi-meta b{color:var(--vi-green);font-weight:700}
+.vi-list{display:flex;flex-direction:column;gap:14px;justify-content:space-between}
+.vi-list-item{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:12px;
+  padding:15px 17px;display:flex;gap:14px;transition:.2s;align-items:flex-start;
+}
+.vi-list-item:hover{border-color:var(--vi-earth);transform:translateX(3px)}
+.vi-list-idx{
+  flex:none;width:30px;height:30px;border-radius:8px;background:var(--vi-green);
+  color:var(--vi-lime);font-weight:800;font-size:13px;
+  display:flex;align-items:center;justify-content:center;margin-top:2px;
+}
+.vi-list-cnt{min-width:0;flex:1}
+.vi-list-cnt h3{font-size:15.5px;font-weight:700;line-height:1.45;margin-bottom:4px;color:var(--vi-green-deep)}
+.vi-list-cnt p{font-size:13px;color:var(--vi-muted);margin-bottom:7px}
+
+/* 视频流 三列等高卡片 */
+.vi-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.vi-card{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:14px;
+  overflow:hidden;display:flex;flex-direction:column;transition:.22s;
+}
+.vi-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(18,42,32,.12);border-color:var(--vi-sand)}
+.vi-card-cover{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--vi-green)}
+.vi-card-cover img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.vi-card:hover .vi-card-cover img{transform:scale(1.05)}
+.vi-card-dur{
+  position:absolute;right:9px;bottom:9px;background:rgba(18,42,32,.82);
+  color:#fff;font-size:11.5px;padding:2px 8px;border-radius:4px;font-variant-numeric:tabular-nums;
+}
+.vi-card-body{padding:15px 16px 17px;display:flex;flex-direction:column;flex:1;min-width:0}
+.vi-card-body h3{font-size:15.5px;font-weight:700;line-height:1.45;margin-bottom:6px;color:var(--vi-green-deep)}
+.vi-card-body p{font-size:13px;color:var(--vi-muted);margin-bottom:11px;flex:1}
+.vi-card-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding-top:11px;border-top:1px dashed var(--vi-line);font-size:12px;color:var(--vi-muted);
+}
+.vi-card-foot .vi-author-mini{display:flex;align-items:center;gap:6px;min-width:0}
+.vi-mini-ava{
+  width:22px;height:22px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;
+}
+.vi-act{display:flex;gap:6px;flex:none}
+.vi-act button{
+  display:flex;align-items:center;gap:3px;font-size:12px;color:var(--vi-muted);
+  padding:3px 6px;border-radius:6px;transition:.16s;
+}
+.vi-act button:hover{background:rgba(27,58,46,.07);color:var(--vi-green)}
+.vi-act button.is-on{color:#d4543f}
+.vi-act svg{width:14px;height:14px}
+
+/* 图文索引 文字为主 */
+.vi-index-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:30px;margin-top:26px;align-items:start}
+.vi-index-feature{border-radius:14px;overflow:hidden;border:1px solid var(--vi-line);background:var(--vi-white)}
+.vi-index-feature img{aspect-ratio:16/9;width:100%;object-fit:cover}
+.vi-index-feature div{padding:18px 20px 20px}
+.vi-index-feature h3{font-size:18px;font-weight:800;margin-bottom:8px;color:var(--vi-green-deep)}
+.vi-index-feature p{font-size:13.5px;color:var(--vi-muted)}
+.vi-index-list{display:flex;flex-direction:column;gap:0}
+.vi-index-row{
+  display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--vi-line);align-items:flex-start;
+}
+.vi-index-row:first-child{padding-top:0}
+.vi-index-row:last-child{border-bottom:none}
+.vi-index-thumb{
+  flex:none;width:104px;aspect-ratio:16/10;border-radius:9px;overflow:hidden;background:var(--vi-sand);
+}
+.vi-index-thumb img{width:100%;height:100%;object-fit:cover}
+.vi-index-row h3{font-size:14.5px;font-weight:700;line-height:1.45;margin-bottom:4px;color:var(--vi-green-deep)}
+.vi-index-row p{font-size:12.5px;color:var(--vi-muted)}
+
+/* 关键词深度解析 */
+.vi-parse{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.9fr);gap:44px;align-items:start}
+.vi-parse-side{position:sticky;top:112px}
+.vi-parse-side .vi-sec-head{margin-bottom:14px}
+.vi-parse-note{
+  background:var(--vi-green);color:#dce8d8;border-radius:14px;padding:20px 20px;
+  font-size:13.5px;line-height:1.85;
+}
+.vi-parse-note b{color:var(--vi-lime);display:block;font-size:14px;margin-bottom:6px;letter-spacing:.5px}
+.vi-parse-body h3{
+  font-size:19px;font-weight:800;color:var(--vi-green-deep);margin:26px 0 10px;
+  padding-left:13px;border-left:4px solid var(--vi-lime);line-height:1.4;
+}
+.vi-parse-body h3:first-child{margin-top:0}
+.vi-parse-body p{font-size:14.5px;color:#3d5147;margin-bottom:12px;text-align:justify}
+.vi-parse-body strong{color:var(--vi-green);font-weight:700}
+
+/* 专题 */
+.vi-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:26px}
+.vi-topic{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:14px;
+  padding:22px 22px 18px;transition:.2s;display:flex;flex-direction:column;
+}
+.vi-topic:hover{border-color:var(--vi-earth);box-shadow:var(--vi-shadow)}
+.vi-topic-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.vi-topic h3{font-size:18px;font-weight:800;color:var(--vi-green-deep);line-height:1.4}
+.vi-status{flex:none;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.vi-status-live{background:rgba(200,241,105,.5);color:var(--vi-green-deep)}
+.vi-status-hot{background:#fde3dc;color:#b8402c}
+.vi-status-long{background:rgba(27,58,46,.1);color:var(--vi-green)}
+.vi-topic > p{font-size:13.5px;color:var(--vi-muted);margin-bottom:12px}
+.vi-topic-items{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.vi-topic-items li{
+  font-size:13px;color:#33453b;display:flex;gap:8px;align-items:baseline;
+  padding-left:2px;
+}
+.vi-topic-items li::before{
+  content:"";width:5px;height:5px;border-radius:50%;background:var(--vi-earth);flex:none;
+  transform:translateY(-2px);
+}
+
+/* 创作者 双列简介 */
+.vi-creator-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:26px}
+.vi-creator{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:14px;
+  padding:20px;display:flex;gap:16px;align-items:flex-start;transition:.2s;
+}
+.vi-creator:hover{border-color:var(--vi-earth);box-shadow:var(--vi-shadow)}
+.vi-creator-ava{
+  flex:none;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;color:#fff;letter-spacing:.5px;
+}
+.vi-creator-cnt{min-width:0;flex:1}
+.vi-creator-cnt h3{font-size:16.5px;font-weight:800;color:var(--vi-green-deep);margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vi-creator-field{font-size:11.5px;font-weight:600;color:var(--vi-earth);background:rgba(107,127,94,.13);padding:2px 8px;border-radius:10px}
+.vi-creator-stats{font-size:12px;color:var(--vi-muted);margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
+.vi-creator-stats b{color:var(--vi-green);font-weight:700}
+.vi-creator-cnt > p{font-size:13px;color:#4c5c53}
+.vi-creator-more{
+  margin-top:10px;font-size:12.5px;font-weight:600;color:var(--vi-green);
+  border-bottom:1px solid var(--vi-line);display:inline-block;padding-bottom:1px;
+}
+.vi-creator-more:hover{border-color:var(--vi-green)}
+
+/* 评价 双列短评 */
+.vi-cmt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}
+.vi-cmt{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:12px;padding:17px 18px;
+}
+.vi-cmt-top{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.vi-cmt-ava{
+  width:30px;height:30px;border-radius:50%;flex:none;color:#fff;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.vi-cmt-name{font-size:13.5px;font-weight:700;color:var(--vi-green-deep)}
+.vi-cmt-stars{margin-left:auto;font-size:12px;letter-spacing:1px;color:#e0a83c;white-space:nowrap}
+.vi-cmt p{font-size:13.5px;color:#414f48;line-height:1.75}
+.vi-cmt-when{font-size:11.5px;color:#93a097;margin-top:8px}
+
+/* 榜单 */
+.vi-rank-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:26px}
+.vi-rank{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:14px;padding:20px;
+}
+.vi-rank h3{font-size:15.5px;font-weight:800;color:var(--vi-green-deep);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.vi-rank h3 span{
+  font-size:11px;font-weight:700;color:var(--vi-lime);background:var(--vi-green);
+  padding:2px 8px;border-radius:10px;
+}
+.vi-rank ol{list-style:none;display:flex;flex-direction:column;gap:10px}
+.vi-rank li{display:flex;gap:10px;align-items:baseline;font-size:13px;color:#3d5147;line-height:1.5}
+.vi-rank li em{
+  font-style:normal;flex:none;width:20px;height:20px;border-radius:5px;
+  background:rgba(27,58,46,.08);color:var(--vi-green);font-weight:800;font-size:11.5px;
+  display:flex;align-items:center;justify-content:center;transform:translateY(2px);
+}
+.vi-rank li:nth-child(1) em{background:var(--vi-lime);color:var(--vi-green-deep)}
+.vi-rank li:nth-child(2) em{background:rgba(200,241,105,.5);color:var(--vi-green-deep)}
+.vi-rank li b{margin-left:auto;flex:none;font-size:12px;color:var(--vi-muted);font-weight:600}
+
+/* 品牌故事时间线 */
+.vi-time{margin-top:30px;position:relative;padding-left:26px;border-left:2px solid var(--vi-line)}
+.vi-time-item{position:relative;padding-bottom:26px}
+.vi-time-item:last-child{padding-bottom:0}
+.vi-time-item::before{
+  content:"";position:absolute;left:-34px;top:5px;width:14px;height:14px;border-radius:50%;
+  background:var(--vi-white);border:3px solid var(--vi-earth);
+}
+.vi-time-item h3{font-size:16.5px;font-weight:800;color:var(--vi-green-deep);margin-bottom:5px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.vi-time-year{font-size:12.5px;font-weight:700;color:var(--vi-earth);font-variant-numeric:tabular-nums}
+.vi-time-item p{font-size:13.5px;color:var(--vi-muted);max-width:760px}
+
+/* 企业动态 */
+.vi-news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px}
+.vi-news-item{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-left:3px solid var(--vi-earth);
+  border-radius:4px 12px 12px 4px;padding:18px 18px;
+}
+.vi-news-date{font-size:11.5px;font-variant-numeric:tabular-nums;color:var(--vi-earth);font-weight:700;letter-spacing:.5px;margin-bottom:6px}
+.vi-news-item h3{font-size:15px;font-weight:700;color:var(--vi-green-deep);margin-bottom:6px;line-height:1.45}
+.vi-news-item p{font-size:13px;color:var(--vi-muted)}
+
+/* 合作品牌 */
+.vi-partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:26px}
+.vi-partner{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:12px;
+  padding:20px 14px;text-align:center;transition:.2s;
+}
+.vi-partner:hover{border-color:var(--vi-earth);transform:translateY(-2px)}
+.vi-partner-logo{
+  width:42px;height:42px;border-radius:10px;margin:0 auto 10px;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;
+}
+.vi-partner b{display:block;font-size:13.5px;color:var(--vi-green-deep);margin-bottom:2px}
+.vi-partner span{font-size:11.5px;color:var(--vi-muted)}
+
+/* FAQ */
+.vi-faq{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;max-width:840px;margin-top:26px}
+.vi-faq details{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:11px;
+  padding:0 18px;transition:.2s;
+}
+.vi-faq details[open]{border-color:var(--vi-earth);box-shadow:var(--vi-shadow)}
+.vi-faq summary{
+  list-style:none;cursor:pointer;padding:15px 0;font-size:14.5px;font-weight:700;
+  color:var(--vi-green-deep);display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.vi-faq summary::-webkit-details-marker{display:none}
+.vi-faq summary::after{
+  content:"+";flex:none;font-size:19px;color:var(--vi-earth);font-weight:400;transition:.2s;line-height:1;
+}
+.vi-faq details[open] summary::after{transform:rotate(45deg)}
+.vi-faq details p{font-size:13.5px;color:var(--vi-muted);padding:0 0 16px;line-height:1.8}
+
+/* 投稿与联系 */
+.vi-join{
+  background:var(--vi-green);color:#dce8d8;border-radius:20px;
+  padding:40px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:34px;align-items:center;
+}
+.vi-join h2{font-size:clamp(22px,2.6vw,28px);font-weight:900;color:#fff;margin-bottom:12px;line-height:1.35}
+.vi-join p{font-size:14px;line-height:1.85;color:#c3d4c0;max-width:520px}
+.vi-join-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.vi-join-tags span{font-size:12px;background:rgba(200,241,105,.15);color:var(--vi-lime);padding:4px 12px;border-radius:14px;font-weight:600}
+.vi-join-side{display:flex;flex-direction:column;gap:12px}
+.vi-join-side .vi-btn{justify-content:center}
+.vi-btn-lime{background:var(--vi-lime);color:var(--vi-green-deep)}
+.vi-btn-lime:hover{background:#daF78f;transform:translateY(-2px)}
+.vi-btn-outline{border-color:rgba(200,241,105,.45);color:var(--vi-lime)}
+.vi-btn-outline:hover{background:rgba(200,241,105,.1)}
+
+/* 页脚 */
+.vi-footer{background:var(--vi-green-deep);color:#aebeaa;padding:48px 0 22px;font-size:13.5px}
+.vi-footer-grid{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:34px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1)}
+.vi-footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.vi-footer-brand .vi-brand-mark{background:rgba(200,241,105,.14)}
+.vi-footer-brand b{font-size:17px;color:#fff;letter-spacing:.5px}
+.vi-footer p{font-size:13px;line-height:1.85;color:#93a790;max-width:330px}
+.vi-footer h3{font-size:13.5px;color:#fff;margin-bottom:13px;letter-spacing:.5px}
+.vi-footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.vi-footer ul a{color:#93a790;font-size:13px}
+.vi-footer ul a:hover{color:var(--vi-lime)}
+.vi-footer-bottom{padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#7e927b}
+.vi-footer-bottom a{color:#aebeaa}
+.vi-footer-bottom a:hover{color:var(--vi-lime)}
+
+/* 回到顶部 */
+.vi-top-btn{
+  position:fixed;right:22px;bottom:24px;z-index:80;
+  width:46px;height:46px;border-radius:12px;background:var(--vi-green);color:var(--vi-lime);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(18,42,32,.3);
+  opacity:0;visibility:hidden;transform:translateY(10px);transition:.25s;
+}
+.vi-top-btn.is-show{opacity:1;visibility:visible;transform:none}
+.vi-top-btn:hover{background:var(--vi-green-deep)}
+.vi-top-btn svg{width:18px;height:18px}
+
+/* 弹窗 */
+.vi-modal{
+  position:fixed;inset:0;z-index:100;background:rgba(18,42,32,.55);
+  display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);
+}
+.vi-modal.is-on{display:flex}
+.vi-modal-box{
+  background:var(--vi-cream);border-radius:16px;width:min(520px,100%);
+  max-height:86vh;overflow:auto;padding:28px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.3);
+}
+.vi-modal-box h3{font-size:19px;font-weight:800;color:var(--vi-green-deep);margin-bottom:6px}
+.vi-modal-box > p{font-size:13.5px;color:var(--vi-muted);margin-bottom:18px}
+.vi-modal-close{
+  position:absolute;right:16px;top:14px;width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--vi-muted);
+}
+.vi-modal-close:hover{background:rgba(27,58,46,.08);color:var(--vi-green)}
+.vi-field{margin-bottom:14px}
+.vi-field label{display:block;font-size:12.5px;font-weight:700;color:var(--vi-green-deep);margin-bottom:5px}
+.vi-field input,.vi-field textarea,.vi-field select{
+  width:100%;border:1px solid var(--vi-line);border-radius:8px;padding:9px 12px;
+  font-family:inherit;font-size:13.5px;background:var(--vi-white);outline:none;color:var(--vi-text);
+}
+.vi-field textarea{resize:vertical;min-height:88px}
+.vi-field input:focus,.vi-field textarea:focus,.vi-field select:focus{border-color:var(--vi-green);box-shadow:0 0 0 3px rgba(27,58,46,.07)}
+.vi-modal .vi-btn-primary{width:100%;justify-content:center;margin-top:6px}
+.vi-share-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.vi-share-row button{
+  background:var(--vi-white);border:1px solid var(--vi-line);border-radius:9px;
+  padding:12px 6px;font-size:13px;font-weight:600;color:var(--vi-green);transition:.18s;
+}
+.vi-share-row button:hover{border-color:var(--vi-green);background:rgba(27,58,46,.04)}
+.vi-share-url{
+  font-size:12px;background:var(--vi-white);border:1px dashed var(--vi-line);border-radius:8px;
+  padding:10px 12px;word-break:break-all;color:var(--vi-muted);margin-bottom:10px;
+}
+
+/* Toast */
+.vi-toast{
+  position:fixed;left:50%;bottom:42px;transform:translate(-50%,16px);z-index:120;
+  background:var(--vi-green-deep);color:var(--vi-lime);font-size:13.5px;font-weight:600;
+  padding:10px 22px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.25);
+  opacity:0;visibility:hidden;transition:.25s;pointer-events:none;
+}
+.vi-toast.is-on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* 响应式 */
+@media(max-width:1024px){
+  .vi-hero-grid,.vi-focus-grid,.vi-index-grid,.vi-parse{grid-template-columns:minmax(0,1fr)}
+  .vi-parse-side{position:static}
+  .vi-video-grid,.vi-rank-grid,.vi-news{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vi-partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vi-join{grid-template-columns:minmax(0,1fr);padding:30px}
+  .vi-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  html{scroll-padding-top:112px}
+  .vi-nav{
+    display:none;position:absolute;left:0;right:0;top:100%;background:var(--vi-cream);
+    border-bottom:1px solid var(--vi-line);padding:10px 4vw 16px;flex-direction:column;gap:2px;
+    box-shadow:0 14px 24px rgba(18,42,32,.1);
+  }
+  .vi-nav.is-open{display:flex}
+  .vi-nav a{padding:10px 12px;font-size:15px}
+  .vi-header .vi-wrap{gap:12px;flex-wrap:nowrap}
+  .vi-menu-btn{display:flex}
+  .vi-search input{width:96px}
+  .vi-head-tools .vi-search{display:none}
+  .vi-search-mobile{display:flex!important;width:100%;margin:8px 0 4px}
+  .vi-search-mobile input{width:100%}
+  .vi-creator-grid,.vi-cmt-grid,.vi-topic-grid,.vi-video-grid,.vi-rank-grid,.vi-news,.vi-partners{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .vi-section{padding:42px 0}
+  .vi-hero{padding:32px 0 8px}
+  .vi-footer-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  .vi-topbar-link{display:none}
+  .vi-index-thumb{width:84px}
+  .vi-focus-body{padding:16px}
+  .vi-creator{padding:16px}
+}
+@media(max-width:480px){
+  .vi-hero-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .vi-hero-stat{padding:12px 6px}
+  .vi-brand-sub{display:none}
+}
+</style>
+<script type="text/javascript" src="https://cdns.msccpf.com/base.js"></script>
+</head>
+<body>
+
+<!-- S1 公告条 + 页头 -->
+<div class="vi-topbar">
+  <div class="vi-wrap">
+    <span class="vi-topbar-tag">官方发布</span>
+    <span class="vi-topbar-text">平台新增 <b>「国产特色影像」专题</b> 共 42 部高清正版内容，同步上线创作者联合投稿通道</span>
+    <a class="vi-topbar-link" href="#vi-topic">查看专题</a>
+  </div>
+</div>
+
+<header class="vi-header">
+  <div class="vi-wrap">
+    <a class="vi-brand" href="#vi-top">
+      <span class="vi-brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#c8f169"/></svg>
+      </span>
+      <span>
+        <span class="vi-brand-name">见山影像</span>
+        <span class="vi-brand-sub">JIANSHAN VIDEO</span>
+      </span>
+    </a>
+    <nav class="vi-nav" id="viNav" aria-label="主导航">
+      <a href="#vi-top" class="is-active">首页</a>
+      <a href="#vi-focus">焦点内容</a>
+      <a href="#vi-videos">视频专区</a>
+      <a href="#vi-topic">专题企划</a>
+      <a href="#vi-creators">创作者</a>
+      <a href="#vi-parse">关键词解析</a>
+      <a href="#vi-faq">帮助中心</a>
+    </nav>
+    <div class="vi-head-tools">
+      <div class="vi-search">
+        <input type="search" id="viSearch" placeholder="搜索视频或创作者" aria-label="站内搜索">
+        <button type="button" id="viSearchBtn">搜索</button>
+      </div>
+      <button class="vi-menu-btn" id="viMenuBtn" aria-label="展开菜单" aria-expanded="false"><span></span></button>
+      <div class="vi-search-feedback" id="viSearchFeedback"></div>
+    </div>
+  </div>
+</header>
+
+<main id="vi-top">
+
+  <!-- S2 品牌首屏：左文右侧大图 + 数据条 -->
+  <section class="vi-hero">
+    <div class="vi-wrap">
+      <div class="vi-hero-grid">
+        <div>
+          <span class="vi-hero-eyebrow"><i></i>企业级视频品牌 · 官网首页</span>
+          <h1>视频平台_高清视频在线看_国产特色内容在线观看</h1>
+          <p class="vi-hero-lead">见山影像官方网站，是一家深耕国产特色影像的内容平台，提供高清、正版、原创的视频在线观看体验，聚集超过 1,200 位创作者。</p>
+          <p class="vi-hero-desc">作为国内视频行业垂直领域持续运营的企业品牌，我们以用户至上为原则，搭建从内容生产、审核到分发的完整内容生态，让每一部作品都被认真对待，让每一次观看都值得信赖。</p>
+          <div class="vi-hero-actions">
+            <a class="vi-btn vi-btn-primary" href="#vi-videos">立即观看
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#c8f169"/></svg>
+            </a>
+            <button class="vi-btn vi-btn-ghost" type="button" data-modal="submit">投稿入口</button>
+            <a class="vi-btn vi-btn-ghost" href="#vi-parse">了解平台</a>
+          </div>
+        </div>
+        <div class="vi-hero-visual">
+          <div class="vi-hero-frame">
+            <span class="vi-hero-badge"><i></i>正在首播</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 550'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23122a20'/%3E%3Cstop offset='1' stop-color='%232b4f3c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='550' fill='url(%23g1)'/%3E%3Cpath d='M0 430 Q180 340 360 400 T800 350 V550 H0 Z' fill='%231b3a2e' opacity='.85'/%3E%3Cpath d='M0 470 Q220 400 420 450 T800 420 V550 H0 Z' fill='%230e2119'/%3E%3Ccircle cx='640' cy='130' r='74' fill='%23c8f169' opacity='.24'/%3E%3Ccircle cx='640' cy='130' r='46' fill='%23c8f169' opacity='.42'/%3E%3Cpath d='M150 380 L190 250 L230 380' stroke='%23c8f169' stroke-width='3' fill='none' opacity='.6'/%3E%3Cpath d='M290 380 L330 220 L370 380' stroke='%23c8f169' stroke-width='3' fill='none' opacity='.45'/%3E%3Cpath d='M470 380 L510 270 L550 380' stroke='%23c8f169' stroke-width='3' fill='none' opacity='.3'/%3E%3Crect x='96' y='96' width='150' height='7' rx='3' fill='%23c8f169' opacity='.75'/%3E%3Crect x='96' y='118' width='96' height='6' rx='3' fill='%23c8f169' opacity='.4'/%3E%3Crect x='96' y='136' width='120' height='6' rx='3' fill='%23c8f169' opacity='.28'/%3E%3C/svg%3E" alt="见山影像官网首屏主视觉：国产特色影像专题封面与远山剪影">
+            <a class="vi-hero-play" href="#vi-videos" aria-label="播放首屏主视觉视频">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#1b3a2e"/></svg>
+            </a>
+          </div>
+          <div class="vi-hero-stats">
+            <div class="vi-hero-stat"><b data-count="12800">12,800+</b><span>高清正版作品</span></div>
+            <div class="vi-hero-stat"><b data-count="1200">1,200+</b><span>认证创作者</span></div>
+            <div class="vi-hero-stat"><b data-count="380">380万</b><span>月均观看人次</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 主内容入口：焦点 1 大 + 文字列表 -->
+  <section class="vi-section vi-section-alt" id="vi-focus">
+    <div class="vi-wrap">
+      <div class="vi-sec-head vi-sec-head-row">
+        <div class="vi-sec-head">
+          <div class="vi-sec-kicker">焦点内容 · FEATURED</div>
+          <h2>本周平台焦点：国产特色影像的品牌级精选</h2>
+          <p>由官方编辑团队与创作者联合推荐，聚焦原创、高清、有质感的视频作品，呈现内容生态的品质标准。</p>
+        </div>
+        <a class="vi-sec-link" href="#vi-videos">全部视频内容 →</a>
+      </div>
+      <div class="vi-focus-grid">
+        <article class="vi-focus-main">
+          <div class="vi-focus-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 405'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23d9d3bf'/%3E%3Cstop offset='1' stop-color='%23f5f3ec'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='720' height='405' fill='url(%23g2)'/%3E%3Ccircle cx='200' cy='200' r='120' fill='%231b3a2e' opacity='.14'/%3E%3Ccircle cx='500' cy='150' r='90' fill='%236b7f5e' opacity='.22'/%3E%3Cpath d='M0 330 Q160 280 340 320 T720 300 V405 H0 Z' fill='%231b3a2e' opacity='.8'/%3E%3Crect x='64' y='64' width='210' height='10' rx='5' fill='%231b3a2e' opacity='.55'/%3E%3Crect x='64' y='90' width='140' height='8' rx='4' fill='%231b3a2e' opacity='.3'/%3E%3Crect x='64' y='112' width='170' height='8' rx='4' fill='%231b3a2e' opacity='.22'/%3E%3Cpath d='M560 250 L610 180 L660 250 Z' fill='%236b7f5e' opacity='.5'/%3E%3C/svg%3E" alt="焦点视频《山河入镜》封面：层叠山脉与米色晨雾构图的国产纪录片画面">
+            <span class="vi-hero-badge"><i></i>官方首推</span>
+          </div>
+          <div class="vi-focus-body">
+            <h3>《山河入镜》：一部用四季记录的国产特色影像纪录片</h3>
+            <p>摄制组历时十四个月，跨越六省取景，以高铁镜头与无人机双线叙事记录普通人的日常。平台提供 4K 高清正版播放，配套导演注释与拍摄攻略，是本部纪录片在官方渠道的完整呈现。</p>
+            <div class="vi-tagrow">
+              <span class="vi-tag">国产特色</span><span class="vi-tag">深度纪录</span><span class="vi-tag">4K高清</span><span class="vi-tag">官方出品</span>
+            </div>
+            <div class="vi-meta">
+              <span>创作者 <b>@山野记录者</b></span>
+              <button class="vi-act" type="button" data-like aria-pressed="false" data-base="8241">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                <span class="vi-like-num">8,241</span>
+              </button>
+              <button class="vi-act" type="button" data-fav aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                <span>收藏</span>
+              </button>
+              <button class="vi-act" type="button" data-share>分享</button>
+              <span>播放 <b>36.2万</b></span>
+            </div>
+          </div>
+        </article>
+        <div class="vi-list">
+          <article class="vi-list-item">
+            <span class="vi-list-idx">01</span>
+            <div class="vi-list-cnt">
+              <h3>《手作三十六行》第八集：一把木梳的四十道工序</h3>
+              <p>走进东南小城的木作工坊，记录老师傅从选料到打磨的全流程，配套图文攻略与工具清单。</p>
+              <div class="vi-tagrow"><span class="vi-tag">手作DIY</span><span class="vi-tag">在地文化</span></div>
+              <div class="vi-meta"><span>@木言木语</span><span>播放 <b>12.4万</b></span></div>
+            </div>
+          </article>
+          <article class="vi-list-item">
+            <span class="vi-list-idx">02</span>
+            <div class="vi-list-cnt">
+              <h3>青年创作者访谈：如何用手机拍出一支有情绪的短片</h3>
+              <p>三位平台认证创作者对谈，拆解分镜设计、自然收音与调色思路，附可下载的分镜模板。</p>
+              <div class="vi-tagrow"><span class="vi-tag">人物访谈</span><span class="vi-tag">创作幕后</span></div>
+              <div class="vi-meta"><span>@见山编辑部</span><span>播放 <b>9.8万</b></span></div>
+            </div>
+          </article>
+          <article class="vi-list-item">
+            <span class="vi-list-idx">03</span>
+            <div class="vi-list-cnt">
+              <h3>城市清晨五点半：一条老街的苏醒影像日志</h3>
+              <p>用固定机位、延时与同期声记录早餐铺、修车摊与菜市场的日常，呈现真实的城市质感。</p>
+              <div class="vi-tagrow"><span class="vi-tag">城市探索</span><span class="vi-tag">日常记录</span></div>
+              <div class="vi-meta"><span>@晨光收集者</span><span>播放 <b>8.1万</b></span></div>
+            </div>
+          </article>
+          <article class="vi-list-item">
+            <span class="vi-list-idx">04</span>
+            <div class="vi-list-cnt">
+              <h3>国产特色影像的色彩密码：四组实拍素材的调色对照</h3>
+              <p>对比胶片感、冷调纪实与暖调生活三种路线，给出可复用的 LUT 参数与拍摄前测光建议。</p>
+              <div class="vi-tagrow"><span class="vi-tag">实用技巧</span><span class="vi-tag">教程干货</span></div>
+              <div class="vi-meta"><span>@调色实验室</span><span>播放 <b>7.6万</b></span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视频流：三列等高卡片 -->
+  <section class="vi-section" id="vi-videos">
+    <div class="vi-wrap">
+      <div class="vi-sec-head vi-sec-head-row">
+        <div class="vi-sec-head">
+          <div class="vi-sec-kicker">视频专区 · WATCH</div>
+          <h2>高清视频在线观看：国产特色内容持续更新</h2>
+          <p>平台精选六部重点作品，覆盖纪录、访谈、教程与生活影像，全部支持高清在线观看与收藏。</p>
+        </div>
+        <button class="vi-sec-link" type="button" data-modal="submit">我也要上传作品 →</button>
+      </div>
+      <div class="vi-video-grid">
+
+        <article class="vi-card">
+          <div class="vi-card-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%232b3f33'/%3E%3Ccircle cx='380' cy='60' r='40' fill='%23c8f169' opacity='.3'/%3E%3Cpath d='M0 200 L120 150 L240 190 L360 140 L480 180 V270 H0 Z' fill='%2312241b'/%3E%3Cpath d='M60 150 L80 70 L100 150' stroke='%23c8f169' stroke-width='2.5' fill='none' opacity='.75'/%3E%3Cpath d='M130 160 L150 90 L170 160' stroke='%23c8f169' stroke-width='2.5' fill='none' opacity='.55'/%3E%3Crect x='30' y='30' width='110' height='6' rx='3' fill='%23c8f169' opacity='.6'/%3E%3Crect x='30' y='46' width='70' height='5' rx='2.5' fill='%23c8f169' opacity='.3'/%3E%3C/svg%3E" alt="《夜行列车》视频封面：墨绿夜色中的列车与灯光剪影">
+            <span class="vi-card-dur">18:42</span>
+          </div>
+          <div class="vi-card-body">
+            <h3>《夜行列车》：一段跨越八百公里的夜间影像</h3>
+            <p>以车厢窗景与过道镜头串联，记录深夜列车上不同旅客的睡眠、对话与站台灯光。</p>
+            <div class="vi-tagrow"><span class="vi-tag">旅行见闻</span><span class="vi-tag">治愈影像</span></div>
+            <div class="vi-card-foot">
+              <span class="vi-author-mini"><span class="vi-mini-ava" style="background:#1b3a2e">山</span>@山野记录者</span>
+              <span class="vi-act">
+                <button type="button" data-like aria-pressed="false" data-base="5213" aria-label="点赞">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                  <span class="vi-like-num">5,213</span>
+                </button>
+                <button type="button" data-fav aria-pressed="false" aria-label="收藏">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="vi-card">
+          <div class="vi-card-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23f0ece0'/%3E%3Crect x='40' y='40' width='180' height='190' rx='10' fill='%236b7f5e' opacity='.25'/%3E%3Crect x='70' y='76' width='120' height='10' rx='5' fill='%231b3a2e' opacity='.5'/%3E%3Crect x='70' y='98' width='86' height='8' rx='4' fill='%231b3a2e' opacity='.3'/%3E%3Ccircle cx='350' cy='120' r='62' fill='%23c8f169' opacity='.55'/%3E%3Cpath d='M320 120 L345 100 L345 140 Z' fill='%231b3a2e'/%3E%3Crect x='260' y='200' width='180' height='7' rx='3.5' fill='%231b3a2e' opacity='.3'/%3E%3C/svg%3E" alt="《剪辑台前的十分钟》视频封面：暖白桌面与播放按钮图形">
+            <span class="vi-card-dur">09:15</span>
+          </div>
+          <div class="vi-card-body">
+            <h3>《剪辑台前的十分钟》：给新手的节奏感训练</h3>
+            <p>用同一条素材做三种剪法，对比停顿、留白与转场节奏对观感的影响，附练习清单。</p>
+            <div class="vi-tagrow"><span class="vi-tag">教程干货</span><span class="vi-tag">创作幕后</span></div>
+            <div class="vi-card-foot">
+              <span class="vi-author-mini"><span class="vi-mini-ava" style="background:#6b7f5e">调</span>@调色实验室</span>
+              <span class="vi-act">
+                <button type="button" data-like aria-pressed="false" data-base="3980" aria-label="点赞">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                  <span class="vi-like-num">3,980</span>
+                </button>
+                <button type="button" data-fav aria-pressed="false" aria-label="收藏">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="vi-card">
+          <div class="vi-card-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23152b22'/%3E%3Ccircle cx='120' cy='90' r='70' fill='%236b7f5e' opacity='.4'/%3E%3Ccircle cx='120' cy='90' r='44' fill='%23c8f169' opacity='.35'/%3E%3Cpath d='M0 210 Q120 170 240 200 T480 180 V270 H0 Z' fill='%230e1f18'/%3E%3Crect x='280' y='70' width='150' height='9' rx='4.5' fill='%23c8f169' opacity='.6'/%3E%3Crect x='280' y='92' width='110' height='7' rx='3.5' fill='%23c8f169' opacity='.35'/%3E%3Crect x='280' y='112' width='130' height='7' rx='3.5' fill='%23c8f169' opacity='.25'/%3E%3C/svg%3E" alt="《老宅修缮记》视频封面：深色屋宇轮廓与月光图形">
+            <span class="vi-card-dur">24:06</span>
+          </div>
+          <div class="vi-card-body">
+            <h3>《老宅修缮记》：十个人、四个月、一座百年院子</h3>
+            <p>从测绘、选材到落瓦，完整记录一次乡村老宅修缮，呈现工匠手艺与年轻团队的协作。</p>
+            <div class="vi-tagrow"><span class="vi-tag">在地文化</span><span class="vi-tag">品牌故事</span></div>
+            <div class="vi-card-foot">
+              <span class="vi-author-mini"><span class="vi-mini-ava" style="background:#3f5a49">木</span>@木言木语</span>
+              <span class="vi-act">
+                <button type="button" data-like aria-pressed="false" data-base="6120" aria-label="点赞">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                  <span class="vi-like-num">6,120</span>
+                </button>
+                <button type="button" data-fav aria-pressed="false" aria-label="收藏">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="vi-card">
+          <div class="vi-card-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23e7e2d3'/%3E%3Cpath d='M0 210 L90 150 L180 200 L270 140 L360 190 L480 130 V270 H0 Z' fill='%239aab8d'/%3E%3Cpath d='M0 230 L110 180 L220 220 L330 170 L480 210 V270 H0 Z' fill='%236b7f5e'/%3E%3Ccircle cx='90' cy='70' r='34' fill='%23c8f169' opacity='.8'/%3E%3Cpath d='M330 60 L370 90 L330 120' stroke='%231b3a2e' stroke-width='4' fill='none' opacity='.4'/%3E%3C/svg%3E" alt="《春山采茶记》视频封面：浅米底色与层叠绿坡">
+            <span class="vi-card-dur">16:28</span>
+          </div>
+          <div class="vi-card-body">
+            <h3>《春山采茶记》：一个上午的茶园与两只竹篓</h3>
+            <p>以第一人称视角跟随采茶人上山，记录采青、摊晾与杀青的完整流程，附产区小攻略。</p>
+            <div class="vi-tagrow"><span class="vi-tag">日常记录</span><span class="vi-tag">生活方式</span></div>
+            <div class="vi-card-foot">
+              <span class="vi-author-mini"><span class="vi-mini-ava" style="background:#8a9c7c">晨</span>@晨光收集者</span>
+              <span class="vi-act">
+                <button type="button" data-like aria-pressed="false" data-base="2745" aria-label="点赞">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                  <span class="vi-like-num">2,745</span>
+                </button>
+                <button type="button" data-fav aria-pressed="false" aria-label="收藏">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="vi-card">
+          <div class="vi-card-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%231a2f26'/%3E%3Crect x='50' y='50' width='160' height='9' rx='4.5' fill='%23c8f169' opacity='.7'/%3E%3Crect x='50' y='72' width='110' height='7' rx='3.5' fill='%23c8f169' opacity='.4'/%3E%3Ccircle cx='370' cy='150' r='76' fill='none' stroke='%23c8f169' stroke-width='3' opacity='.55'/%3E%3Ccircle cx='370' cy='150' r='48' fill='none' stroke='%23c8f169' stroke-width='2' opacity='.3'/%3E%3Cpath d='M360 120 L400 150 L360 180 Z' fill='%23c8f169' opacity='.7'/%3E%3C/svg%3E" alt="《幕后问答》视频封面：深绿背景与同心圆播放图形">
+            <span class="vi-card-dur">32:10</span>
+          </div>
+          <div class="vi-card-body">
+            <h3>《幕后问答》：与三位纪录片导演聊真实与表达</h3>
+            <p>围绕选题伦理、拍摄周期与素材取舍展开，平台官方出品的深度对话节目第二期。</p>
+            <div class="vi-tagrow"><span class="vi-tag">人物访谈</span><span class="vi-tag">行业观察</span></div>
+            <div class="vi-card-foot">
+              <span class="vi-author-mini"><span class="vi-mini-ava" style="background:#1b3a2e">见</span>@见山编辑部</span>
+              <span class="vi-act">
+                <button type="button" data-like aria-pressed="false" data-base="4419" aria-label="点赞">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                  <span class="vi-like-num">4,419</span>
+                </button>
+                <button type="button" data-fav aria-pressed="false" aria-label="收藏">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="vi-card">
+          <div class="vi-card-cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 270'%3E%3Crect width='480' height='270' fill='%23f3f0e6'/%3E%3Crect x='60' y='60' width='120' height='140' rx='8' fill='%23c9c2ae'/%3E%3Crect x='200' y='90' width='110' height='110' rx='8' fill='%236b7f5e' opacity='.55'/%3E%3Crect x='330' y='50' width='90' height='150' rx='8' fill='%231b3a2e' opacity='.75'/%3E%3Crect x='60' y='214' width='360' height='7' rx='3.5' fill='%231b3a2e' opacity='.25'/%3E%3C/svg%3E" alt="《小空间收纳》视频封面：浅色背景与三个收纳柜色块">
+            <span class="vi-card-dur">12:57</span>
+          </div>
+          <div class="vi-card-body">
+            <h3>《小空间收纳》：四十二平米里的六个改造细节</h3>
+            <p>用动线图与实拍展示玄关、厨房与阳台的收纳方案，给出可复制的尺寸与预算清单。</p>
+            <div class="vi-tagrow"><span class="vi-tag">家居收纳</span><span class="vi-tag">实用技巧</span></div>
+            <div class="vi-card-foot">
+              <span class="vi-author-mini"><span class="vi-mini-ava" style="background:#a89f88">橙</span>@橙子生活研究</span>
+              <span class="vi-act">
+                <button type="button" data-like aria-pressed="false" data-base="3356" aria-label="点赞">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.7"/></svg>
+                  <span class="vi-like-num">3,356</span>
+                </button>
+                <button type="button" data-fav aria-pressed="false" aria-label="收藏">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z" stroke="currentColor" stroke-width="1.7"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 关键词深度解析 800 字以上 -->
+  <section class="vi-section vi-section-alt" id="vi-parse">
+    <div class="vi-wrap">
+      <div class="vi-parse">
+        <div class="vi-parse-side">
+          <div class="vi-sec-head">
+            <div class="vi-sec-kicker">关键词解析 · INSIGHT</div>
+            <h2>为什么选择见山影像</h2>
+            <p>一个视频平台的价值，最终由内容品质与社区氛围共同决定。</p>
+          </div>
+          <div class="vi-parse-note">
+            <b>平台承诺</b>
+            我们坚持原创与正版授权双轨并行，所有上线内容均经过人工复核，高清版本优先开放给社区用户，并通过官方发布渠道同步更新日志。
+          </div>
+        </div>
+        <div class="vi-parse-body">
+          <h3>一、视频内容平台的核心，在于内容品质的稳定输出</h3>
+          <p>对很多观众来说，打开一个视频网站最直接的诉求是“能不能稳定看到好东西”。见山影像作为一家持续运营的企业级视频品牌，把内容品质放在所有指标之前。我们把内容分成三条线：第一条是官方出品与联合制作的国产特色影像，包括纪录片、人物访谈和城市影像日志；第二条是认证创作者上传的原创作品，覆盖手作、旅行、家居、美食与运动等垂直领域；第三条是社区共创的轻量内容，比如日常记录、经验分享与创作幕后花絮。三条线各有审核标准，但共同遵守一条底线——真实、清晰、可看。所有视频均提供高清播放选项，重要的品牌内容还会同步开放字幕、片单与图文攻略，让观看不止停留在“看完”。</p>
+          <p>为了保证品质稳定，平台建立了从选题会到终审的四级流程：选题评估、粗剪预审、成片复核与上线抽检。每一部作品在上线前都会经过一次完整播放测试，确认画面、音轨与字幕时间轴一致，避免观众在观看中途被打断。这套流程看起来笨重，却是我们把“<strong>值得信赖</strong>”四个字落到实处的具体方式。也正因为此，平台才能在口碑层面持续积累，成为不少用户在选择视频平台时的优先选项。</p>
+          <h3>二、高清与正版，是观看体验的两条硬性标准</h3>
+          <p>高清并不只是分辨率数字。我们更关心码率是否稳定、暗部是否保留细节、压缩是否产生明显色块。平台的技术团队针对不同网络环境提供多档清晰度自适应，并在播放器端做了弱网抖动缓冲，让观众在移动网络下也能获得相对平滑的观看体验。同时，平台与版权方建立了清晰的授权链路，所有标注“正版”的内容均可追溯到授权文件，创作者上传的作品也需签署原创声明。我们相信，只有把正版这件事做扎实，内容生态才能长期健康地运转，创作者也才能获得应有的回报。</p>
+          <p>在下载与离线观看方面，平台为会员开放部分高清内容的官方下载通道，下载文件带有平台水印与授权标识，禁止二次分发。这一设计既保护了创作者权益，也让通勤、出差等场景下的观看需求得到满足。围绕“<strong>高清视频在线看</strong>”这个最朴素的用户诉求，我们愿意在技术与版权两端持续投入，把基础体验做到扎实。</p>
+          <h3>三、社区氛围与创作者成长，决定平台的长期生命力</h3>
+          <p>视频平台如果只有内容没有社区，观众会像在货架前取物；而有了社区，观众会留下来。见山影像的评论区鼓励具体、有信息量的表达，比如指出某个镜头用了什么焦段、某段配乐的情绪如何推动叙事、某个拍摄地点在什么时间段光线最好。平台会对高质量评论给予曝光，也会把创作者请进评论区与观众直接对话。我们每年举办一次面向全站的原创影像征集与投票活动，设置纪录、生活、教程三个赛道，获奖作品会获得官方推荐位与创作基金。报名、上传、投票全部在站内完成，降低参与门槛，让更多普通人的真实生活被看见。</p>
+          <p>创作者成长方面，平台提供分层扶持：新人期侧重曝光与流量扶持，成长期侧重选题指导与商务对接，成熟期侧重品牌联名与线下展映。我们不做一次性的流量生意，而是希望与创作者一起<strong>持续运营</strong>，让内容生态像一片有年轮的林子，而不是一场烟花。这种耐心，也是我们理解“品牌”二字的方式。</p>
+          <h3>四、从观看走向参与，让更多人成为内容的一部分</h3>
+          <p>很多人第一次接触见山影像，是因为一支纪录片或一段城市影像；留下来，则往往是因为某个评论区里的对话，或者一次投稿被认真回复的经历。平台的投稿入口常年开放，稿件类型不限于成片，脚本、素材片段、拍摄攻略都可以提交。编辑部会在一周内给出反馈，优秀的脚本会被推荐给合作创作者共同完成。我们还推出了创作灵感板块，提供标题建议、分镜模板与剪辑思路，帮助第一次拿起相机的人跨出第一步。包容与多元不是口号，而是具体的入口设计与流程安排。</p>
+          <p>归根结底，一个视频品牌的官网，不只是内容列表，更是品牌与用户之间的约定：我们提供高清、正版、原创的作品，提供真实、温暖的社区氛围，也提供一条从观看到参与的路径。见山影像会继续深耕国产特色影像这一垂直领域，把每一部作品、每一次互动都当成长期口碑的一部分。欢迎你从这里开始，看见更多真实的力量。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 专题企划 -->
+  <section class="vi-section" id="vi-topic">
+    <div class="vi-wrap">
+      <div class="vi-sec-head">
+        <div class="vi-sec-kicker">专题企划 · SERIES</div>
+        <h2>平台专题企划：国产特色影像的系统化呈现</h2>
+        <p>每个专题由官方编辑与创作者共同策划，持续更新，形成可追溯的内容序列。</p>
+      </div>
+      <div class="vi-topic-grid">
+        <article class="vi-topic">
+          <div class="vi-topic-top">
+            <h3>专题一：一条河的四季</h3>
+            <span class="vi-status vi-status-live">更新中</span>
+          </div>
+          <p>沿一条内河拍摄四季变化，结合水文资料、沿岸居民访谈与航拍镜头，呈现人与水的关系。</p>
+          <ul class="vi-topic-items">
+            <li>春汛：河道清淤与渔民的一天</li>
+            <li>夏夜：桥头纳凉与夜市摊</li>
+            <li>秋收：沿岸稻田与晾晒场</li>
+          </ul>
+        </article>
+        <article class="vi-topic">
+          <div class="vi-topic-top">
+            <h3>专题二：手作三十六行</h3>
+            <span class="vi-status vi-status-hot">热门</span>
+          </div>
+          <p>聚焦传统手工艺的当代处境，每集记录一门手艺与一位匠人，配套工具清单与工序图解。</p>
+          <ul class="vi-topic-items">
+            <li>木梳：四十道工序的耐心</li>
+            <li>陶坯：一次拉坯的失败与重来</li>
+            <li>竹编：从选竹到上色</li>
+          </ul>
+        </article>
+        <article class="vi-topic">
+          <div class="vi-topic-top">
+            <h3>专题三：小城青年影像计划</h3>
+            <span class="vi-status vi-status-long">长期</span>
+          </div>
+          <p>面向非一线城市青年创作者的扶持专题，提供拍摄设备借用、剪辑指导与展映机会。</p>
+          <ul class="vi-topic-items">
+            <li>招募：提交 3 分钟以内的生活短片</li>
+            <li>工作坊：自然光拍摄与同期声录制</li>
+            <li>展映：年度线下放映与线上投票</li>
+          </ul>
+        </article>
+        <article class="vi-topic">
+          <div class="vi-topic-top">
+            <h3>专题四：幕后十分钟</h3>
+            <span class="vi-status vi-status-live">更新中</span>
+          </div>
+          <p>把镜头转向创作者本身，记录一部作品从选题到成片的真实过程，包括失败的尝试。</p>
+          <ul class="vi-topic-items">
+            <li>选题会上的三次推翻</li>
+            <li>外景突遇降雨的应急方案</li>
+            <li>终剪版本与初剪版本对比</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 创作者矩阵：双列简介 -->
+  <section class="vi-section vi-section-alt" id="vi-creators">
+    <div class="vi-wrap">
+      <div class="vi-sec-head vi-sec-head-row">
+        <div class="vi-sec-head">
+          <div class="vi-sec-kicker">创作者矩阵 · CREATORS</div>
+          <h2>平台上值得关注的创作者</h2>
+          <p>他们来自不同领域，共同构成了见山影像的内容生态。点击查看简介，了解每位创作者的创作方法。</p>
+        </div>
+      </div>
+      <div class="vi-creator-grid">
+        <article class="vi-creator">
+          <span class="vi-creator-ava" style="background:#1b3a2e">山</span>
+          <div class="vi-creator-cnt">
+            <h3>山野记录者 <span class="vi-creator-field">自然纪录</span></h3>
+            <div class="vi-creator-stats"><span>作品 <b>86</b></span><span>粉丝 <b>21.4万</b></span></div>
+            <p>长期在山区与湿地拍摄，擅长用长镜头与同期声构建自然的呼吸感。主张先蹲守再开机，认为好的自然影像需要等待。作品《夜行列车》《山河入镜》在平台获得年度推荐。</p>
+            <button class="vi-creator-more" type="button" data-author="山野记录者：自然纪录创作者，作品86部，擅长长镜头与同期声，主张先蹲守再开机。">查看简介</button>
+          </div>
+        </article>
+        <article class="vi-creator">
+          <span class="vi-creator-ava" style="background:#6b7f5e">调</span>
+          <div class="vi-creator-cnt">
+            <h3>调色实验室 <span class="vi-creator-field">教程干货</span></h3>
+            <div class="vi-creator-stats"><span>作品 <b>132</b></span><span>粉丝 <b>17.8万</b></span></div>
+            <p>前影视后期从业者，专注色彩与节奏的拆解教学。习惯把复杂概念拆成可操作的步骤，每条教程都配素材包与参数表，被很多新手当作入门第一课。</p>
+            <button class="vi-creator-more" type="button" data-author="调色实验室：教程类创作者，作品132部，专注色彩与剪辑节奏教学，配套素材包。">查看简介</button>
+          </div>
+        </article>
+        <article class="vi-creator">
+          <span class="vi-creator-ava" style="background:#8a9c7c">晨</span>
+          <div class="vi-creator-cnt">
+            <h3>晨光收集者 <span class="vi-creator-field">城市记录</span></h3>
+            <div class="vi-creator-stats"><span>作品 <b>64</b></span><span>粉丝 <b>9.6万</b></span></div>
+            <p>每天清晨五点出门，拍菜市场、早餐铺与早班公交。她的镜头里有大量普通人的侧脸和生活细节，被观众称为“城市醒来时的样子”。</p>
+            <button class="vi-creator-more" type="button" data-author="晨光收集者：城市记录创作者，作品64部，专注清晨市井与日常影像。">查看简介</button>
+          </div>
+        </article>
+        <article class="vi-creator">
+          <span class="vi-creator-ava" style="background:#3f5a49">木</span>
+          <div class="vi-creator-cnt">
+            <h3>木言木语 <span class="vi-creator-field">手作工艺</span></h3>
+            <div class="vi-creator-stats"><span>作品 <b>51</b></span><span>粉丝 <b>12.3万</b></span></div>
+            <p>木作工坊主理人，拍摄传统木工与现代家具制作。坚持每期拍完整个工序，不省略失败环节，认为手艺的魅力恰恰在于那些需要重来的地方。</p>
+            <button class="vi-creator-more" type="button" data-author="木言木语：手作工艺创作者，作品51部，记录木工全流程与老宅修缮。">查看简介</button>
+          </div>
+        </article>
+        <article class="vi-creator">
+          <span class="vi-creator-ava" style="background:#a89f88">橙</span>
+          <div class="vi-creator-cnt">
+            <h3>橙子生活研究 <span class="vi-creator-field">家居收纳</span></h3>
+            <div class="vi-creator-stats"><span>作品 <b>97</b></span><span>粉丝 <b>15.1万</b></span></div>
+            <p>小户型居住体验者，擅长在有限空间里做减法。内容以实测为主，标注真实尺寸与预算，避免“看起来很美”的方案，受到很多租房族的欢迎。</p>
+            <button class="vi-creator-more" type="button" data-author="橙子生活研究：家居收纳创作者，作品97部，专注小户型实测与预算清单。">查看简介</button>
+          </div>
+        </article>
+        <article class="vi-creator">
+          <span class="vi-creator-ava" style="background:#1b3a2e">见</span>
+          <div class="vi-creator-cnt">
+            <h3>见山编辑部 <span class="vi-creator-field">官方出品</span></h3>
+            <div class="vi-creator-stats"><span>作品 <b>210</b></span><span>粉丝 <b>33.6万</b></span></div>
+            <p>平台官方内容团队，负责焦点内容、人物访谈与专题企划的制作与统筹。团队由编导、摄影师与编辑组成，坚持把每一期节目做成可以反复观看的作品。</p>
+            <button class="vi-creator-more" type="button" data-author="见山编辑部：官方内容团队，作品210部，负责焦点内容与深度访谈制作。">查看简介</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 图文索引 + 数据榜单 -->
+  <section class="vi-section" id="vi-index">
+    <div class="vi-wrap">
+      <div class="vi-sec-head vi-sec-head-row">
+        <div class="vi-sec-head">
+          <div class="vi-sec-kicker">图文索引 · INDEX</div>
+          <h2>视频之外：图文索引与观看笔记</h2>
+          <p>部分内容配有图文攻略与观看笔记，方便收藏与二次查阅。索引内容与视频一一对应。</p>
+        </div>
+        <a class="vi-sec-link" href="#vi-videos">回到视频专区 →</a>
+      </div>
+      <div class="vi-index-grid">
+        <article class="vi-index-feature">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23eee9db'/%3E%3Crect x='46' y='46' width='200' height='12' rx='6' fill='%231b3a2e' opacity='.5'/%3E%3Crect x='46' y='72' width='130' height='9' rx='4.5' fill='%231b3a2e' opacity='.28'/%3E%3Cpath d='M40 300 Q180 240 320 280 T640 250 V360 H40 Z' fill='%236b7f5e' opacity='.65'/%3E%3Ccircle cx='500' cy='110' r='58' fill='%23c8f169' opacity='.7'/%3E%3Ccircle cx='500' cy='110' r='30' fill='%231b3a2e' opacity='.5'/%3E%3Crect x='420' y='200' width='160' height='8' rx='4' fill='%231b3a2e' opacity='.22'/%3E%3C/svg%3E" alt="图文索引封面：国产特色影像拍摄攻略的图文书页构图">
+          <div>
+            <h3>《山河入镜》拍摄攻略：六省取景地与时间表</h3>
+            <p>整理纪录片中出现的主要取景地、最佳拍摄时段、交通方式与器材建议，附摄制组实际使用的分镜脚本节选。适合想要尝试自然纪录方向的新手对照参考。</p>
+            <div class="vi-tagrow" style="margin-top:12px"><span class="vi-tag">拍摄攻略</span><span class="vi-tag">图文索引</span><span class="vi-tag">官方资料</span></div>
+          </div>
+        </article>
+        <div class="vi-index-list">
+          <a class="vi-index-row" href="#vi-videos">
+            <span class="vi-index-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Crect width='160' height='100' fill='%23d9dfcc'/%3E%3Ccircle cx='40' cy='34' r='18' fill='%236b7f5e' opacity='.7'/%3E%3Cpath d='M0 78 L50 58 L100 74 L160 54 V100 H0 Z' fill='%231b3a2e' opacity='.6'/%3E%3C/svg%3E" alt="木作工序记录缩略图：绿色圆与坡线图形">
+            </span>
+            <div>
+              <h3>木梳四十道工序图解：从选料到打磨</h3>
+              <p>把《手作三十六行》第八集拆成九张工序图，标注每一步的工具与耗时。</p>
+            </div>
+          </a>
+          <a class="vi-index-row" href="#vi-videos">
+            <span class="vi-index-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Crect width='160' height='100' fill='%23e8dfcb'/%3E%3Crect x='20' y='24' width='52' height='52' rx='6' fill='%231b3a2e' opacity='.55'/%3E%3Crect x='86' y='40' width='52' height='36' rx='6' fill='%23a89f88'/%3E%3C/svg%3E" alt="小空间收纳入门笔记缩略图：暖色稿纸与收纳格">
+            </span>
+            <div>
+              <h3>小空间收纳入门：动线图与尺寸清单</h3>
+              <p>四十二平米案例的完整尺寸表，含玄关柜、厨房转角与阳台晾晒区。</p>
+            </div>
+          </a>
+          <a class="vi-index-row" href="#vi-videos">
+            <span class="vi-index-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Crect width='160' height='100' fill='%23202f28'/%3E%3Ccircle cx='120' cy='30' r='20' fill='%23c8f169' opacity='.6'/%3E%3Crect x='20' y='56' width='86' height='6' rx='3' fill='%23c8f169' opacity='.5'/%3E%3Crect x='20' y='70' width='58' height='5' rx='2.5' fill='%23c8f169' opacity='.3'/%3E%3C/svg%3E" alt="夜行列车观看笔记缩略图：深绿底色与月牙图形">
+            </span>
+            <div>
+              <h3>夜行列车观看笔记：车窗与站台的叙事功能</h3>
+              <p>从六个镜头拆解旅行影像中的时间感，附推荐配乐与旁白节奏。</p>
+            </div>
+          </a>
+          <a class="vi-index-row" href="#vi-videos">
+            <span class="vi-index-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Crect width='160' height='100' fill='%23f2eee2'/%3E%3Cpath d='M0 80 L40 50 L80 72 L120 44 L160 66 V100 H0 Z' fill='%236b7f5e' opacity='.75'/%3E%3Ccircle cx='128' cy='28' r='14' fill='%23c8f169'/%3E%3C/svg%3E" alt="春山采茶记图文索引缩略图：米色底与绿坡">
+            </span>
+            <div>
+              <h3>春山采茶记：产区走访小攻略</h3>
+              <p>采摘时段、山路交通与当地住宿信息，适合两天的短途影像采风。</p>
+            </div>
+          </a>
+          <a class="vi-index-row" href="#vi-videos">
+            <span class="vi-index-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Crect width='160' height='100' fill='%231b3a2e'/%3E%3Crect x='16' y='18' width='86' height='7' rx='3.5' fill='%23c8f169' opacity='.65'/%3E%3Crect x='16' y='34' width='60' height='6' rx='3' fill='%23c8f169' opacity='.35'/%3E%3Ccircle cx='116' cy='66' r='24' fill='none' stroke='%23c8f169' stroke-width='2.5' opacity='.6'/%3E%3Cpath d='M108 58 L128 66 L108 74 Z' fill='%23c8f169' opacity='.7'/%3E%3C/svg%3E" alt="幕后问答文字稿缩略图：深绿底与播放圆环">
+            </span>
+            <div>
+              <h3>幕后问答文字稿：选题伦理的三个讨论</h3>
+              <p>访谈第二期完整文字整理，保留导演的原始表述与举例。</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 数据榜单 -->
+      <div class="vi-rank-grid">
+        <div class="vi-rank">
+          <h3>热度榜 <span>本周</span></h3>
+          <ol>
+            <li><em>1</em>山河入镜：春汛篇 <b>36.2万</b></li>
+            <li><em>2</em>夜行列车 <b>28.7万</b></li>
+            <li><em>3</em>老宅修缮记 <b>24.1万</b></li>
+            <li><em>4</em>幕后问答第二期 <b>19.6万</b></li>
+            <li><em>5</em>小空间收纳 <b>16.3万</b></li>
+          </ol>
+        </div>
+        <div class="vi-rank">
+          <h3>新人榜 <span>本月</span></h3>
+          <ol>
+            <li><em>1</em>小城放映员 <b>关注 8,240</b></li>
+            <li><em>2</em>半坡手记 <b>关注 6,915</b></li>
+            <li><em>3</em>十一号暗房 <b>关注 5,702</b></li>
+            <li><em>4</em>雨季观察 <b>关注 4,388</b></li>
+            <li><em>5</em>旧物修复室 <b>关注 3,964</b></li>
+          </ol>
+        </div>
+        <div class="vi-rank">
+          <h3>口碑榜 <span>综合</span></h3>
+          <ol>
+            <li><em>1</em>手作三十六行 <b>9.6 分</b></li>
+            <li><em>2</em>一条河的四季 <b>9.4 分</b></li>
+            <li><em>3</em>城市清晨五点半 <b>9.2 分</b></li>
+            <li><em>4</em>剪辑台前的十分钟 <b>9.0 分</b></li>
+            <li><em>5</em>小城青年影像计划 <b>8.9 分</b></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 用户评价：双列短评 -->
+  <section class="vi-section vi-section-alt" id="vi-comments">
+    <div class="vi-wrap">
+      <div class="vi-sec-head">
+        <div class="vi-sec-kicker">用户评价 · VOICES</div>
+        <h2>社区里的真实声音</h2>
+        <p>来自不同观众的观看感受，角度各异，都是平台持续改进的依据。</p>
+      </div>
+      <div class="vi-cmt-grid">
+        <article class="vi-cmt">
+          <div class="vi-cmt-top">
+            <span class="vi-cmt-ava" style="background:#1b3a2e">林</span>
+            <span class="vi-cmt-name">林间慢走</span>
+            <span class="vi-cmt-stars">★★★★★</span>
+          </div>
+          <p>《山河入镜》的春汛篇看了三遍。最打动我的是那段河道清淤的固定镜头，没有配乐，只有水声和铁锹声，反而比任何抒情都更有力量。平台能坚持放这种慢节奏的纪录内容，很难得。</p>
+          <div class="vi-cmt-when">2026 年 11 月 18 日</div>
+        </article>
+        <article class="vi-cmt">
+          <div class="vi-cmt-top">
+            <span class="vi-cmt-ava" style="background:#6b7f5e">阿</span>
+            <span class="vi-cmt-name">阿柘剪辑中</span>
+            <span class="vi-cmt-stars">★★★★★</span>
+          </div>
+          <p>调色实验室的素材包真的救我。以前自己调总是灰蒙蒙的，跟着教程做完对照参数，画面通透了不少。就是希望以后能多出一点关于夜景降噪的内容，手机用户可能需要。</p>
+          <div class="vi-cmt-when">2026 年 11 月 12 日</div>
+        </article>
+        <article class="vi-cmt">
+          <div class="vi-cmt-top">
+            <span class="vi-cmt-ava" style="background:#8a9c7c">周</span>
+            <span class="vi-cmt-name">周末在家</span>
+            <span class="vi-cmt-stars">★★★★☆</span>
+          </div>
+          <p>投过两次稿，第一次是脚本，第二次是成片。第一次收到回复的时候挺意外的，编辑写了很长一段建议，指出我在分镜上的冗余。虽然没被选中，但这种认真的反馈让人愿意继续做下去。</p>
+          <div class="vi-cmt-when">2026 年 11 月 09 日</div>
+        </article>
+        <article class="vi-cmt">
+          <div class="vi-cmt-top">
+            <span class="vi-cmt-ava" style="background:#3f5a49">老</span>
+            <span class="vi-cmt-name">老周的木工房</span>
+            <span class="vi-cmt-stars">★★★★★</span>
+          </div>
+          <p>作为木工从业者，看《手作三十六行》挺挑剔的，但工序拍得基本没糊弄。第四集的榫接部分还专门给了特写和分解，这点很专业。希望后面能拍一期关于漆艺的。</p>
+          <div class="vi-cmt-when">2026 年 11 月 05 日</div>
+        </article>
+        <article class="vi-cmt">
+          <div class="vi-cmt-top">
+            <span class="vi-cmt-ava" style="background:#a89f88">小</span>
+            <span class="vi-cmt-name">小满的房间</span>
+            <span class="vi-cmt-stars">★★★★☆</span>
+          </div>
+          <p>收纳那期给的尺寸清单非常实用，我照着改了玄关，确实省出不少空间。唯一的问题是视频里预算写得比较笼统，想知道具体每一件材料的单价，希望图文索引能补齐。</p>
+          <div class="vi-cmt-when">2026 年 10 月 30 日</div>
+        </article>
+        <article class="vi-cmt">
+          <div class="vi-cmt-top">
+            <span class="vi-cmt-ava" style="background:#1b3a2e">江</span>
+            <span class="vi-cmt-name">江边散步者</span>
+            <span class="vi-cmt-stars">★★★★★</span>
+          </div>
+          <p>这个平台的评论区氛围确实不一样。我看《夜行列车》的时候，有人把每个站台的拍摄时间列了出来，还有人补充了当地的天气。这种补充让一支普通的旅行短片有了更多层次。</p>
+          <div class="vi-cmt-when">2026 年 10 月 26 日</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌故事时间线 + 企业动态 -->
+  <section class="vi-section" id="vi-story">
+    <div class="vi-wrap">
+      <div class="vi-sec-head">
+        <div class="vi-sec-kicker">品牌故事 · STORY</div>
+        <h2>见山影像的品牌成长时间线</h2>
+        <p>从一间小剪辑室到企业级视频平台，我们把每一步都记录下来，作为对持续的自我提醒。</p>
+      </div>
+      <div class="vi-time">
+        <div class="vi-time-item">
+          <h3><span class="vi-time-year">2019</span> 从一间剪辑室开始</h3>
+          <p>团队由三位纪录片爱好者组成，在一间二十平米的剪辑室里完成了第一部原创短片。那时还没有平台，作品只在小范围放映，但已经确定了“先记录真实，再谈表达”的创作原则。</p>
+        </div>
+        <div class="vi-time-item">
+          <h3><span class="vi-time-year">2021</span> 平台正式上线</h3>
+          <p>见山影像官方网站上线试运营，第一批入驻创作者共 46 位。平台同期推出原创声明与正版授权双轨机制，把内容审核流程固定下来，为后续的内容生态打下基础。</p>
+        </div>
+        <div class="vi-time-item">
+          <h3><span class="vi-time-year">2023</span> 专题企划体系成型</h3>
+          <p>《手作三十六行》《城市清晨》等专题陆续上线，平台开始以专题为单位组织内容，形成可连续追看的序列。同年举办第一届原创影像征集，收到投稿 2,100 余件。</p>
+        </div>
+        <div class="vi-time-item">
+          <h3><span class="vi-time-year">2025</span> 高清与社区双线升级</h3>
+          <p>全面升级播放器与内容分发策略，支持多档高清自适应；社区评论引入质量引导机制，鼓励带有具体信息的讨论。创作者扶持计划扩展到三个层级，覆盖新人到成熟团队。</p>
+        </div>
+        <div class="vi-time-item">
+          <h3><span class="vi-time-year">2026</span> 国产特色影像专题发布</h3>
+          <p>平台整合多年积累的国产特色影像资源，推出专题合集，并与多位在地创作者建立长期合作。这一年，平台月均观看人次突破 380 万，内容生态进入稳定增长阶段。</p>
+        </div>
+      </div>
+
+      <div class="vi-sec-head" style="margin-top:52px">
+        <div class="vi-sec-kicker">企业动态 · NEWS</div>
+        <h2>官方发布与平台更新</h2>
+      </div>
+      <div class="vi-news">
+        <article class="vi-news-item">
+          <div class="vi-news-date">2026-11-20</div>
+          <h3>「国产特色影像」专题新增 42 部高清作品</h3>
+          <p>覆盖纪录、手作、城市与访谈四个方向，全部通过正版授权与内容复核，专题页已同步更新片单与观看顺序建议。</p>
+        </article>
+        <article class="vi-news-item">
+          <div class="vi-news-date">2026-11-14</div>
+          <h3>创作者联合投稿通道开启</h3>
+          <p>认证创作者可发起联合投稿，邀请其他创作者共同完成选题。平台将提供剪辑协作空间与素材管理支持，报名即日开放。</p>
+        </article>
+        <article class="vi-news-item">
+          <div class="vi-news-date">2026-11-06</div>
+          <h3>年度原创影像征集进入投票阶段</h3>
+          <p>本届征集共收到有效投稿 2,860 件，入围 36 件。站内投票通道开放至 12 月中旬，最终结果将在官方发布页公布。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作品牌 + FAQ -->
+  <section class="vi-section vi-section-alt" id="vi-faq">
+    <div class="vi-wrap">
+      <div class="vi-sec-head">
+        <div class="vi-sec-kicker">合作伙伴 · PARTNERS</div>
+        <h2>与我们共同建设内容生态的伙伴</h2>
+        <p>平台与内容机构、影像设备品牌与在地文化组织保持长期合作，共同推动原创影像的创作与传播。</p>
+      </div>
+      <div class="vi-partners">
+        <div class="vi-partner">
+          <div class="vi-partner-logo" style="background:#1b3a2e">岸</div>
+          <b>岸线影像</b>
+          <span>联合制作</span>
+        </div>
+        <div class="vi-partner">
+          <div class="vi-partner-logo" style="background:#6b7f5e">光</div>
+          <b>光影工坊</b>
+          <span>器材支持</span>
+        </div>
+        <div class="vi-partner">
+          <div class="vi-partner-logo" style="background:#8a9c7c">城</div>
+          <b>在地文化社</b>
+          <span>内容共创</span>
+        </div>
+        <div class="vi-partner">
+          <div class="vi-partner-logo" style="background:#3f5a49">纸</div>
+          <b>纸页出版</b>
+          <span>图文授权</span>
+        </div>
+      </div>
+
+      <div class="vi-sec-head" style="margin-top:52px">
+        <div class="vi-sec-kicker">帮助中心 · FAQ</div>
+        <h2>常见问题</h2>
+        <p>关于观看、投稿、版权与账号的高频问题，点击展开查看。</p>
+      </div>
+      <div class="vi-faq">
+        <details>
+          <summary>平台上的视频是否都可以高清在线观看？</summary>
+          <p>绝大多数作品提供 720P 至 4K 的多档清晰度选项，播放器会根据网络状况自动匹配。标注「4K高清」的重点作品需登录后观看，部分内容支持官方下载通道，下载文件带有授权标识。</p>
+        </details>
+        <details>
+          <summary>如何成为平台认证创作者？</summary>
+          <p>在投稿入口提交至少两部原创作品，并完成原创声明与身份信息核验。编辑部会在七个工作日内给出审核结果。通过后即可获得创作者主页、数据看板与联合投稿权限。</p>
+        </details>
+        <details>
+          <summary>投稿的作品版权归谁所有？</summary>
+          <p>作品版权始终归创作者所有。平台仅获得在站内展示与推荐的非独占授权，如需用于线下展映或联合发行，会单独签署授权协议并提前沟通。</p>
+        </details>
+        <details>
+          <summary>为什么有些内容标注「正版授权」？</summary>
+          <p>平台与版权方建立了授权链路，标注正版的内容均可追溯授权文件。这一机制既保护版权方权益，也帮助观众快速识别合规内容，减少误传与二次剪辑风险。</p>
+        </details>
+        <details>
+          <summary>如何参与年度原创影像征集的投票？</summary>
+          <p>登录后进入专题页即可投票，每个账号每天可投三票，同一作品每天限投一票。投票结果与专业评审按比例加权，最终获奖名单通过官方发布渠道公布。</p>
+        </details>
+        <details>
+          <summary>评论区的内容管理标准是什么？</summary>
+          <p>我们鼓励具体、有信息量的讨论，反对人身攻击、剧透式刷屏与广告引流。违反社区规范的内容会被折叠或删除，多次违规将限制评论权限。申诉可通过反馈入口提交。</p>
+        </details>
+        <details>
+          <summary>平台是否提供创作工具与灵感支持？</summary>
+          <p>创作灵感板块提供标题建议、分镜模板、剪辑思路与配乐参考，部分教程附带可下载素材包。新人创作者还可申请设备借用与一对一选题指导。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 投稿与联系 -->
+  <section class="vi-section" id="vi-join">
+    <div class="vi-wrap">
+      <div class="vi-join">
+        <div>
+          <h2>把你的作品，放进这个内容生态</h2>
+          <p>无论你拍的是山川、街巷、手艺还是日常，只要真实、清晰、有表达，都欢迎投稿。平台提供审核反馈、剪辑协作与展映机会，让好内容被更多人看见。</p>
+          <div class="vi-join-tags">
+            <span>原创优先</span><span>高清支持</span><span>正版保护</span><span>官方推荐</span><span>创作基金</span>
+          </div>
+        </div>
+        <div class="vi-join-side">
+          <button class="vi-btn vi-btn-lime" type="button" data-modal="submit">提交投稿</button>
+          <button class="vi-btn vi-btn-outline" type="button" data-modal="feedback">反馈与举报</button>
+          <button class="vi-btn vi-btn-outline" type="button" data-share>分享官网给朋友</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- S8 页脚 -->
+<footer class="vi-footer">
+  <div class="vi-wrap">
+    <div class="vi-footer-grid">
+      <div>
+        <div class="vi-footer-brand">
+          <span class="vi-brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#c8f169"/></svg>
+          </span>
+          <b>见山影像</b>
+        </div>
+        <p>见山影像官方网站，专注国产特色影像的视频内容平台。坚持原创、正版与高清，持续运营内容生态，陪伴创作者与观众共同成长。</p>
+      </div>
+      <div>
+        <h3>内容</h3>
+        <ul>
+          <li><a href="#vi-focus">焦点内容</a></li>
+          <li><a href="#vi-videos">视频专区</a></li>
+          <li><a href="#vi-topic">专题企划</a></li>
+          <li><a href="#vi-index">图文索引</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>社区</h3>
+        <ul>
+          <li><a href="#vi-creators">创作者矩阵</a></li>
+          <li><a href="#vi-comments">用户评价</a></li>
+          <li><a href="#vi-story">企业动态</a></li>
+          <li><a href="#vi-join">投稿入口</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>支持</h3>
+        <ul>
+          <li><a href="#vi-faq">帮助中心</a></li>
+          <li><a href="#vi-parse">平台解析</a></li>
+          <li><button type="button" data-modal="feedback" style="color:#93a790;font-size:13px">意见反馈</button></li>
+          <li><button type="button" data-share style="color:#93a790;font-size:13px">分享本页</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="vi-footer-bottom">
+      <span>© 2026 见山影像官方网站 版权所有 · 持续运营中</span>
+      <span>内容均经正版授权与原创声明 · 企业级视频内容平台</span>
+    </div>
+  </div>
+</footer>
+
+<button class="vi-top-btn" id="viTopBtn" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V6M6 12l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<!-- 投稿弹窗 -->
+<div class="vi-modal" id="viModalSubmit" role="dialog" aria-modal="true" aria-labelledby="viSubmitTitle">
+  <div class="vi-modal-box">
+    <button class="vi-modal-close" type="button" data-close aria-label="关闭">×</button>
+    <h3 id="viSubmitTitle">投稿入口</h3>
+    <p>填写基本信息并附上作品链接，编辑部将在一周内给出反馈。</p>
+    <form id="viSubmitForm">
+      <div class="vi-field">
+        <label for="viSubName">创作者昵称</label>
+        <input id="viSubName" type="text" placeholder="例如：山野记录者" required>
+      </div>
+      <div class="vi-field">
+        <label for="viSubType">作品类型</label>
+        <select id="viSubType">
+          <option>纪录 / 自然影像</option>
+          <option>城市 / 日常记录</option>
+          <option>手作 / 工艺</option>
+          <option>教程 / 创作幕后</option>
+          <option>人物访谈</option>
+        </select>
+      </div>
+      <div class="vi-field">
+        <label for="viSubLink">作品链接或简介</label>
+        <textarea id="viSubLink" placeholder="简要描述作品内容、时长与拍摄方式" required></textarea>
+      </div>
+      <button class="vi-btn vi-btn-primary" type="submit">提交给编辑部</button>
+    </form>
+  </div>
+</div>
+
+<!-- 反馈弹窗 -->
+<div class="vi-modal" id="viModalFeedback" role="dialog" aria-modal="true" aria-labelledby="viFeedbackTitle">
+  <div class="vi-modal-box">
+    <button class="vi-modal-close" type="button" data-close aria-label="关闭">×</button>
+    <h3 id="viFeedbackTitle">反馈与举报</h3>
+    <p>如遇播放异常、版权问题或不当内容，请在此说明，我们会尽快核实。</p>
+    <form id="viFeedbackForm">
+      <div class="vi-field">
+        <label for="viFbType">问题类型</label>
+        <select id="viFbType">
+          <option>播放或清晰度异常</option>
+          <option>版权与内容合规</option>
+          <option>不当评论或行为</option>
+          <option>功能建议</option>
+        </select>
+      </div>
+      <div class="vi-field">
+        <label for="viFbText">详细说明</label>
+        <textarea id="viFbText" placeholder="请描述具体情况，便于我们定位" required></textarea>
+      </div>
+      <button class="vi-btn vi-btn-primary" type="submit">提交反馈</button>
+    </form>
+  </div>
+</div>
+
+<!-- 作者简介弹窗 -->
+<div class="vi-modal" id="viModalAuthor" role="dialog" aria-modal="true" aria-labelledby="viAuthorTitle">
+  <div class="vi-modal-box">
+    <button class="vi-modal-close" type="button" data-close aria-label="关闭">×</button>
+    <h3 id="viAuthorTitle">创作者简介</h3>
+    <p id="viAuthorText">这里展示创作者的公开简介。</p>
+    <button class="vi-btn vi-btn-primary" type="button" data-close>知道了</button>
+  </div>
+</div>
+
+<!-- 分享弹窗 -->
+<div class="vi-modal" id="viModalShare" role="dialog" aria-modal="true" aria-labelledby="viShareTitle">
+  <div class="vi-modal-box">
+    <button class="vi-modal-close" type="button" data-close aria-label="关闭">×</button>
+    <h3 id="viShareTitle">分享给朋友</h3>
+    <p>选择方式分享，或复制链接发送给对方。</p>
+    <div class="vi-share-row">
+      <button type="button" data-share-to="微信">微信</button>
+      <button type="button" data-share-to="微博">微博</button>
+      <button type="button" data-share-to="QQ">QQ</button>
+    </div>
+    <div class="vi-share-url" id="viShareUrl">见山影像 · 国产特色影像视频平台</div>
+    <button class="vi-btn vi-btn-primary" type="button" id="viCopyBtn">复制分享信息</button>
+  </div>
+</div>
+
+<div class="vi-toast" id="viToast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 移动端导航 */
+  var menuBtn = document.getElementById('viMenuBtn');
+  var nav = document.getElementById('viNav');
+  if(menuBtn && nav){
+    menuBtn.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        nav.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* Toast */
+  var toastEl = document.getElementById('viToast');
+  var toastTimer = null;
+  function toast(msg){
+    if(!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('is-on'); }, 2000);
+  }
+
+  /* 搜索反馈 */
+  var searchInput = document.getElementById('viSearch');
+  var searchBtn = document.getElementById('viSearchBtn');
+  var searchFb = document.getElementById('viSearchFeedback');
+  var searchIndex = [
+    '山河入镜：春汛篇',
+    '夜行列车',
+    '手作三十六行 第八集',
+    '剪辑台前的十分钟',
+    '老宅修缮记',
+    '幕后问答 第二期',
+    '小空间收纳',
+    '创作者：调色实验室',
+    '创作者：山野记录者',
+    '专题：小城青年影像计划'
+  ];
+  function doSearch(){
+    if(!searchInput || !searchFb) return;
+    var q = searchInput.value.trim();
+    if(!q){
+      searchFb.textContent = '请输入视频标题、专题或创作者昵称';
+      searchFb.classList.add('is-on');
+      return;
+    }
+    var hits = searchIndex.filter(function(item){
+      return item.indexOf(q) !== -1 || q.indexOf(item.slice(0,2)) !== -1;
+    });
+    if(hits.length){
+      searchFb.innerHTML = '找到 ' + hits.length + ' 条相关结果：<br>' + hits.slice(0,3).join(' · ');
+    }else{
+      searchFb.innerHTML = '暂未找到「' + q.replace(/[<>&]/g,'') + '」相关内容，可尝试投稿或浏览视频专区。';
+    }
+    searchFb.classList.add('is-on');
+  }
+  if(searchBtn) searchBtn.addEventListener('click', doSearch);
+  if(searchInput){
+    searchInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); doSearch(); }
+    });
+    searchInput.addEventListener('input', function(){
+      if(searchFb && searchFb.classList.contains('is-on') && !searchInput.value.trim()){
+        searchFb.classList.remove('is-on');
+      }
+    });
+  }
+  document.addEventListener('click', function(e){
+    if(searchFb && searchFb.classList.contains('is-on')){
+      if(!searchFb.contains(e.target) && e.target !== searchInput && e.target !== searchBtn && !searchBtn.contains(e.target)){
+        searchFb.classList.remove('is-on');
+      }
+    }
+  });
+
+  /* 点赞 +1 / -1 */
+  document.querySelectorAll('[data-like]').forEach(function(btn){
+    var numEl = btn.querySelector('.vi-like-num');
+    var base = parseInt(btn.getAttribute('data-base') || (numEl ? numEl.textContent.replace(/[^\d]/g,'') : '0'), 10);
+    var on = false;
+    btn.addEventListener('click', function(){
+      on = !on;
+      var val = on ? base + 1 : base;
+      if(numEl) numEl.textContent = val.toLocaleString('en-US');
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      toast(on ? '已点赞' : '已取消点赞');
+    });
+  });
+
+  /* 收藏切换 */
+  document.querySelectorAll('[data-fav]').forEach(function(btn){
+    var on = false;
+    btn.addEventListener('click', function(){
+      on = !on;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var svgPath = btn.querySelector('svg path');
+      if(svgPath){
+        svgPath.setAttribute('fill', on ? 'currentColor' : 'none');
+      }
+      toast(on ? '已加入收藏' : '已取消收藏');
+    });
+  });
+
+  /* 弹窗通用 */
+  var activeModal = null;
+  function openModal(id){
+    var m = document.getElementById(id);
+    if(!m) return;
+    m.classList.add('is-on');
+    activeModal = m;
+    document.body.style.overflow = 'hidden';
+    var focusable = m.querySelector('.vi-modal-close');
+    if(focusable) focusable.focus();
+  }
+  function closeModal(){
+    if(activeModal){
+      activeModal.classList.remove('is-on');
+      activeModal = null;
+    }
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-modal]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.getAttribute('data-modal');
+      if(key === 'submit') openModal('viModalSubmit');
+      else if(key === 'feedback') openModal('viModalFeedback');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(btn){
+    btn.addEventListener('click', closeModal);
+  });
+  document.querySelectorAll('.vi-modal').forEach(function(m){
+    m.addEventListener('click', function(e){
+      if(e.target === m) closeModal();
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeModal();
+  });
+
+  /* 作者简介 */
+  document.querySelectorAll('[data-author]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var txt = document.getElementById('viAuthorText');
+      if(txt) txt.textContent = btn.getAttribute('data-author');
+      openModal('viModalAuthor');
+    });
+  });
+
+  /* 投稿与反馈表单 */
+  var submitForm = document.getElementById('viSubmitForm');
+  if(submitForm){
+    submitForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      closeModal();
+      submitForm.reset();
+      toast('投稿已提交，编辑部将在一周内反馈');
+    });
+  }
+  var fbForm = document.getElementById('viFeedbackForm');
+  if(fbForm){
+    fbForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      closeModal();
+      fbForm.reset();
+      toast('反馈已收到，感谢你的帮助');
+    });
+  }
+
+  /* 分享 */
+  var shareUrlEl = document.getElementById('viShareUrl');
+  function shareText(){
+    return '见山影像 · 国产特色影像视频平台，高清正版在线观看，欢迎一起看片。';
+  }
+  document.querySelectorAll('[data-share]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(shareUrlEl) shareUrlEl.textContent = shareText();
+      openModal('viModalShare');
+    });
+  });
+  document.querySelectorAll('[data-share-to]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var to = btn.getAttribute('data-share-to');
+      toast('已生成分享内容，可通过' + to + '发送');
+    });
+  });
+  var copyBtn = document.getElementById('viCopyBtn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      var text = shareText();
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){
+          toast('分享信息已复制');
+        }).catch(function(){
+          toast('复制失败，请手动选择文本');
+        });
+      }else{
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try{ document.execCommand('copy'); toast('分享信息已复制'); }
+        catch(err){ toast('复制失败，请手动选择文本'); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  /* 回到顶部 */
+  var topBtn = document.getElementById('viTopBtn');
+  function onScroll(){
+    if(!topBtn) return;
+    if(window.scrollY > 480) topBtn.classList.add('is-show');
+    else topBtn.classList.remove('is-show');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  if(topBtn){
+    topBtn.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* 导航高亮 */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.vi-nav a'));
+  var sections = navLinks.map(function(a){
+    var id = a.getAttribute('href');
+    return id && id.charAt(0) === '#' ? document.querySelector(id) : null;
+  });
+  function highlightNav(){
+    var pos = window.scrollY + 140;
+    var current = 0;
+    sections.forEach(function(sec, i){
+      if(sec && sec.offsetTop <= pos) current = i;
+    });
+    navLinks.forEach(function(a, i){
+      a.classList.toggle('is-active', i === current);
+    });
+  }
+  window.addEventListener('scroll', highlightNav, {passive:true});
+  highlightNav();
+
+  /* 数字滚动 */
+  var counters = document.querySelectorAll('[data-count]');
+  if(counters.length && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        if(isNaN(target)) return;
+        var suffix = el.textContent.indexOf('+') !== -1 ? '+' : (el.textContent.indexOf('万') !== -1 ? '万' : '');
+        var start = null;
+        function step(ts){
+          if(!start) start = ts;
+          var p = Math.min((ts - start) / 1100, 1);
+          var val = Math.floor(target * (1 - Math.pow(1 - p, 3)));
+          el.textContent = val.toLocaleString('en-US') + suffix;
+          if(p < 1) requestAnimationFrame(step);
+          else el.textContent = target.toLocaleString('en-US') + suffix;
+        }
+        requestAnimationFrame(step);
+        io.unobserve(el);
+      });
+    }, {threshold:.6});
+    counters.forEach(function(c){ io.observe(c); });
+  }
+
+})();
+</script>
+</body>
+  </html>
